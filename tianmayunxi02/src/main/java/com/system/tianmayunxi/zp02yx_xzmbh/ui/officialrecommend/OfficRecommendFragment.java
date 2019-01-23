@@ -23,6 +23,7 @@ import com.system.myproject.utils.UEMethod;
 import com.system.tianmayunxi.zp02yx_xzmbh.R;
 import com.system.tianmayunxi.zp02yx_xzmbh.R2;
 import com.system.tianmayunxi.zp02yx_xzmbh.Tmyx02RouterConfig;
+import com.system.tianmayunxi.zp02yx_xzmbh.TmyxConstant;
 import com.system.tianmayunxi.zp02yx_xzmbh.bean.EventCallBackBean;
 import com.system.tianmayunxi.zp02yx_xzmbh.ui.officialrecommend.adapter.officAdapter;
 import com.system.tianmayunxi.zp02yx_xzmbh.ui.officialrecommend.bean.ArticleBean;
@@ -83,6 +84,7 @@ public class OfficRecommendFragment extends BaseFragment<OfficContract.View, Off
         mlist.setLayoutManager(layout);
         mlist.addItemDecoration(new VerticalSpaceItemDecoration(UEMethod.dp2px(getThisContext(),5)));
         adapter = new officAdapter(new ArrayList<>());
+        adapter.setFragment(this);
         adapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
@@ -174,7 +176,9 @@ public class OfficRecommendFragment extends BaseFragment<OfficContract.View, Off
                             linkShare.setDescription(item2.getContent());
                             linkShare.setThumb(TMSharedPUtil.getTMBaseConfig(getContext()).getDomain()+item2.getTheme_image());
                             linkShare.setTitle(item2.getTitle());
-                            linkShare.setUrl(TMSharedPUtil.getTMBaseConfig(getContext()).getDomain()+item2.getImage().get(0));
+                            String domain = TMSharedPUtil.getTMBaseConfig(getContext()).getDomain();
+
+                            linkShare.setUrl(domain + TmyxConstant.shareUrl+item2.getId());
                             TMShareUtil.getInstance(getContext()).shareLink(linkShare);
                         }
                         break;

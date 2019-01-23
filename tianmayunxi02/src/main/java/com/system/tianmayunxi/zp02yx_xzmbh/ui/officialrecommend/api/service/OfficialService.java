@@ -183,4 +183,28 @@ public interface OfficialService {
      */
     @POST("zp02yx_xzmbh/member/remind")
     Observable<TMBaseResoultEntity<Object>> remind(@Body  RequestBody body);
+    /**
+     *完善资料
+     * @return
+     */
+    @POST("zp02yx_xzmbh/api/AllBindScore")
+    Observable<TMBaseResoultEntity<Object>> AllBindService(@Body  RequestBody body);
+    /**
+     *绑定手机
+     * @return
+     */
+    @POST("zp02yx_xzmbh/api/BindScore?type=4")
+    Observable<TMBaseResoultEntity<Object>> BindScore(@Body  RequestBody body);
+    /**
+     *每日登录
+     * @return
+     */
+    @POST("zp02yx_xzmbh/api/loginscore")
+    Observable<TMBaseResoultEntity<Object>> loginscore(@Body  RequestBody body);
+    /**
+     *每日登录领取积分
+     * @return
+     */
+    @POST("zp01yx_bwusb/api/login_log")
+    Observable<TMBaseResoultEntity<Object>> loginLog(@Body  RequestBody body);
 }

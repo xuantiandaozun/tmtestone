@@ -239,7 +239,7 @@ public class IntegralFragment extends MVPBaseFragment<OfficContract.View, OfficP
         mPresenter.getMyPoint(parms);
     }
 
-    @OnClick({R2.id.tv_userinfo, R2.id.tv_account, R2.id.tv_signrule, R2.id.tv_sign})
+    @OnClick({R2.id.tv_userinfo, R2.id.tv_account, R2.id.tv_login,R2.id.tv_signrule, R2.id.tv_sign})
     public void onClick(View view) {
         TMBaseFragment fragment = null;
         if (view.getId() == R.id.tv_userinfo) {
@@ -268,8 +268,19 @@ public class IntegralFragment extends MVPBaseFragment<OfficContract.View, OfficP
         } else if (view.getId() == R.id.tv_sign) {
             HashMap<String, Object> parms = new HashMap<>();
             mPresenter.Sign(parms);
+        }else if(view.getId()==R.id.tv_login){
+            if(!is_bindlogin){
+                lqJf();
+            }
         }
 
+    }
+
+    private void lqJf() {
+        HashMap<String, Object> parms = new HashMap<>();
+        String value = new Gson().toJson(parms);
+        RequestBody body = RequestBody.create(okhttp3.MediaType.parse("application/json; charset=utf-8"), value);
+        mPresenter.loginLog(body);
     }
 
     private void initList() {
@@ -334,6 +345,18 @@ public class IntegralFragment extends MVPBaseFragment<OfficContract.View, OfficP
                                 tv_sign.setClickable(false);
                             }
 
+                            break;
+                        case "AllBindService":
+                            JsonObject jsonObject3 = GsonUtil.GsonToBean(object, JsonObject.class);
+                            is_allbind = jsonObject3.get("is_allbind").getAsBoolean();
+                            int all_score = jsonObject3.get("all_score").getAsInt();
+                            tv2.setText("+"+all_score+"");
+                            RadiusTextViewDelegate delegate1 = tv_userinfo.getDelegate();
+                            if(is_allbind){
+                                delegate1.setBackgroundColor(getResources().getColor(R.color.textcolor01));
+                                delegate1.setTextColor(getResources().getColor(R.color.white));
+                                tv_userinfo.setText("已领取");
+                            }
                             break;
                         case "BindScore":
                             JsonObject jsonObject4 = GsonUtil.GsonToBean(object, JsonObject.class);
