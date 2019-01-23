@@ -140,7 +140,7 @@ public class TiDetailFragment extends MVPBaseFragment<OfficContract.View, OfficP
         mlist.addItemDecoration(new SpaceItemDecoration(UEMethod.dp2px(getThisContext(), 5)));
         ArrayList<String> gridData = new ArrayList<>();
         ivadapter = new TieIvAdapter(gridData);
-
+        mlist.setNestedScrollingEnabled(false);
         ivadapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {

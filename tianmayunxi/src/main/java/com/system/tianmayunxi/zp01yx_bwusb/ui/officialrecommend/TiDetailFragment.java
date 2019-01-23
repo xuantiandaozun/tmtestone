@@ -137,6 +137,7 @@ public class TiDetailFragment extends MVPBaseFragment<OfficContract.View, OfficP
 
         titleBar.setBackgroundColor(themeColor);
         tv_centertitle.setTextColor(textcolor);
+        mlist.setNestedScrollingEnabled(false);
 
         mlist.setLayoutManager(new GridLayoutManager(getThisContext(), 3));
         mlist.addItemDecoration(new SpaceItemDecoration(UEMethod.dp2px(getThisContext(), 5)));
