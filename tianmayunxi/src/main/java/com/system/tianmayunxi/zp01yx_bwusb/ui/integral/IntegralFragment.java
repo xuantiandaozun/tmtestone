@@ -75,6 +75,12 @@ public class IntegralFragment extends MVPBaseFragment<OfficContract.View, OfficP
     RadiusTextView tv_userinfo;
     @BindView(R2.id.re_theme)
     RelativeLayout re_theme;
+    @BindView(R2.id.tv2)
+    TextView tv2;
+    @BindView(R2.id.tv4)
+    TextView tv4;
+    @BindView(R2.id.tv3)
+    TextView tv3;
     private QdAdapter adapter;
     private boolean is_sign;
     private int score;
@@ -82,6 +88,10 @@ public class IntegralFragment extends MVPBaseFragment<OfficContract.View, OfficP
     private int themeColor;
     private TMUser tmUser;
     private int textcolor;
+    private boolean is_allbind;
+    private boolean is_bind;
+    private boolean is_bindlogin;
+
 
     @Override
     protected OfficPresenter createPresenter() {
@@ -154,43 +164,20 @@ public class IntegralFragment extends MVPBaseFragment<OfficContract.View, OfficP
                 TMSharedPUtil.saveTMPush(getContext(),false);
             }
         });
-
         LinearLayoutManager layout = new LinearLayoutManager(getThisContext());
         layout.setOrientation(LinearLayoutManager.HORIZONTAL);
         mlist.setLayoutManager(layout);
         adapter = new QdAdapter(new ArrayList<>());
         mlist.setAdapter(adapter);
-        RadiusTextViewDelegate delegate = tv_account.getDelegate();
-        if(TextUtils.isEmpty(tmUser.getMobile())){
-            delegate.setBackgroundColor(getResources().getColor(R.color.white));
-            delegate.setTextColor(getResources().getColor(R.color.blue_primary));
-            tv_account.setText("去绑定");
-        }else {
-            delegate.setBackgroundColor(getResources().getColor(R.color.textcolor01));
-            delegate.setTextColor(getResources().getColor(R.color.white));
-            tv_account.setText("已绑定");
-        }
+
         String sex = tmUser.getSex();
         String birthday = tmUser.getBirthday();
         String mobile = tmUser.getMobile();
         String wb = tmUser.getWb();
         String wx = tmUser.getWx();
         String qq = tmUser.getQq();
-        RadiusTextViewDelegate delegate1 = tv_userinfo.getDelegate();
-        boolean b = !TextUtils.isEmpty(sex) && !TextUtils.isEmpty(birthday) && !TextUtils.isEmpty(mobile) && !TextUtils.isEmpty(wb) && !TextUtils.isEmpty(wx) && !TextUtils.isEmpty(qq);
-        if(b){
-            delegate1.setBackgroundColor(getResources().getColor(R.color.textcolor01));
-            delegate1.setTextColor(getResources().getColor(R.color.white));
-            tv_account.setText("已完成");
-        }
-        String tmToken = TMSharedPUtil.getTMToken(getContext());
-        RadiusTextViewDelegate delegate2 = tv_login.getDelegate();
 
-        if(!TextUtils.isEmpty(tmToken)){
-           tv_login.setText("已领取");
-            delegate2.setBackgroundColor(getResources().getColor(R.color.textcolor01));
-            delegate2.setTextColor(getResources().getColor(R.color.white));
-        }
+        String tmToken = TMSharedPUtil.getTMToken(getContext());
 
 
     }
@@ -209,6 +196,29 @@ public class IntegralFragment extends MVPBaseFragment<OfficContract.View, OfficP
         getMyPoint();
         isSign();
         isRemind();
+        AllBindService();
+        BindScore();
+        loginscore();
+    }
+    private void loginscore() {
+        HashMap<String, Object> parms = new HashMap<>();
+        String value = new Gson().toJson(parms);
+        RequestBody body = RequestBody.create(okhttp3.MediaType.parse("application/json; charset=utf-8"), value);
+        mPresenter.loginscore(body);
+    }
+
+    private void BindScore() {
+        HashMap<String, Object> parms = new HashMap<>();
+        String value = new Gson().toJson(parms);
+        RequestBody body = RequestBody.create(okhttp3.MediaType.parse("application/json; charset=utf-8"), value);
+        mPresenter.BindScore(body);
+    }
+
+    private void AllBindService() {
+        HashMap<String, Object> parms = new HashMap<>();
+        String value = new Gson().toJson(parms);
+        RequestBody body = RequestBody.create(okhttp3.MediaType.parse("application/json; charset=utf-8"), value);
+        mPresenter.AllBindService(body);
     }
     private void isRemind() {
         HashMap<String, Object> parms = new HashMap<>();
@@ -324,6 +334,34 @@ public class IntegralFragment extends MVPBaseFragment<OfficContract.View, OfficP
                                 tv_sign.setClickable(false);
                             }
 
+                            break;
+                        case "BindScore":
+                            JsonObject jsonObject4 = GsonUtil.GsonToBean(object, JsonObject.class);
+                            is_bind = jsonObject4.get("is_bind").getAsBoolean();
+                            String scores = jsonObject4.get("score").getAsString();
+                            tv3.setText("+"+scores);
+                            RadiusTextViewDelegate delegate = tv_account.getDelegate();
+                            if(is_bind){
+                                delegate.setBackgroundColor(getResources().getColor(R.color.textcolor01));
+                                delegate.setTextColor(getResources().getColor(R.color.white));
+                                tv_account.setText("已领取");
+                            }
+                            break;
+                        case "loginscore":
+                            JsonObject jsonObject5 = GsonUtil.GsonToBean(object, JsonObject.class);
+                            is_bindlogin = jsonObject5.get("is_login").getAsBoolean();
+                            int scoreslogin = jsonObject5.get("score").getAsInt();
+                            tv4.setText("+"+scoreslogin);
+                            RadiusTextViewDelegate delegate2 = tv_login.getDelegate();
+                            if(is_bindlogin){
+                                tv_login.setText("已领取");
+                                delegate2.setBackgroundColor(getResources().getColor(R.color.textcolor01));
+                                delegate2.setTextColor(getResources().getColor(R.color.white));
+                            }
+                            break;
+                        case "loginLog":
+                            loginscore();
+                            getMyPoint();
                             break;
                         case "Sign":
                             initList();

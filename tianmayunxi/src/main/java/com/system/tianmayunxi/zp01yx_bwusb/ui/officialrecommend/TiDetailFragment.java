@@ -29,6 +29,7 @@ import com.system.myproject.utils.UEMethod;
 import com.system.tianmayunxi.zp01yx_bwusb.BuildConfig;
 import com.system.tianmayunxi.zp01yx_bwusb.R;
 import com.system.tianmayunxi.zp01yx_bwusb.R2;
+import com.system.tianmayunxi.zp01yx_bwusb.TmyxConstant;
 import com.system.tianmayunxi.zp01yx_bwusb.TmyxRouterConfig;
 import com.system.tianmayunxi.zp01yx_bwusb.bean.EventCallBackBean;
 import com.system.tianmayunxi.zp01yx_bwusb.ui.officialrecommend.adapter.PlAdapter;
@@ -333,9 +334,11 @@ public class TiDetailFragment extends MVPBaseFragment<OfficContract.View, OfficP
         } else if (view.getId() == R.id.tv_share) {
             TMLinkShare linkShare = new TMLinkShare();
             linkShare.setDescription(articleDetail.getContent());
-            linkShare.setThumb(TMSharedPUtil.getTMBaseConfig(getContext()).getDomain() + articleDetail.getTheme_image());
+            linkShare.setThumb(TMSharedPUtil.getTMBaseConfig(getContext()).getDomain()+articleDetail.getTheme_image());
             linkShare.setTitle(articleDetail.getTitle());
-            linkShare.setUrl(TMSharedPUtil.getTMBaseConfig(getContext()).getDomain() + articleDetail.getImages().get(0).getImage());
+            String domain = TMSharedPUtil.getTMBaseConfig(getContext()).getDomain();
+
+            linkShare.setUrl(domain + TmyxConstant.shareUrl+id);
             TMShareUtil.getInstance(getContext()).shareLink(linkShare);
         } else if (view.getId() == R.id.tv_up) {
             articUp();
