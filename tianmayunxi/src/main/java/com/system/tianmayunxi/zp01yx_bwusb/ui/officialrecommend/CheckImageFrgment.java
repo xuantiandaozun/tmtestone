@@ -318,10 +318,10 @@ public class CheckImageFrgment extends MVPBaseFragment <OfficContract.View, Offi
                             LinkedTreeMap object1 = (LinkedTreeMap) object;
                             if (object1.size() != 0) {
                                 star_id = (double) object1.get("star_id");
-                                tv_addstar.setBackgroundResource(R.mipmap.ic_select_start);
+                                tv_addstar.setImageResource(R.mipmap.ic_select_start);
                             } else {
                                 star_id = -1;
-                                tv_addstar.setBackgroundResource(R.mipmap.icon_footer_sc);
+                                tv_addstar.setImageResource(R.mipmap.icon_footer_sc);
                             }
                             break;
                         case "deleteStar":
