@@ -9,6 +9,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -89,6 +90,8 @@ public class TiDetailFragment extends MVPBaseFragment<OfficContract.View, OfficP
     LinearLayout titleBar;
     @BindView(R2.id.tv_centertitle)
     TextView tv_centertitle;
+    @BindView(R2.id.tv_addstar)
+    ImageView tv_addstar;
     @Autowired(name = "params")
     public String params;
     private PlAdapter adapter;
@@ -507,8 +510,10 @@ public class TiDetailFragment extends MVPBaseFragment<OfficContract.View, OfficP
                             LinkedTreeMap object1 = (LinkedTreeMap) object;
                             if (object1.size() != 0) {
                                 star_id = (double) object1.get("star_id");
+                                tv_addstar.setBackgroundResource(R.mipmap.ic_select_start);
                             } else {
                                 star_id = -1;
+                                tv_addstar.setBackgroundResource(R.mipmap.icon_footer_sc);
                             }
                             break;
                         case "deleteStar":
