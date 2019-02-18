@@ -275,8 +275,7 @@ public class TiDetailFragment extends MVPBaseFragment<OfficContract.View, OfficP
         parms.put("article_id", articleDetail.getId() + "");
         parms.put("extend", jsonObject.toString());
         parms.put("type", "1");
-        String domain = TMSharedPUtil.getTMBaseConfig(getContext()).getDomain();
-        parms.put("pic",domain+articleDetail.getTheme_image());
+        parms.put("pic",articleDetail.getTheme_image());
         String values = new Gson().toJson(parms);
         RequestBody body = RequestBody.create(okhttp3.MediaType.parse("application/json; charset=utf-8"), values);
         mPresenter.addStar(body);

@@ -271,6 +271,7 @@ public class TiDetailFragment extends MVPBaseFragment<OfficContract.View, OfficP
         parms.put("article_id", articleDetail.getId() + "");
         parms.put("extend", jsonObject.toString());
         parms.put("type", "1");
+        parms.put("pic", articleDetail.getTheme_image());
         String domain = TMSharedPUtil.getTMBaseConfig(getContext()).getDomain();
 
         parms.put("pic",domain+articleDetail.getTheme_image());
