@@ -244,7 +244,7 @@ public class TiDetailFragment extends MVPBaseFragment<OfficContract.View, OfficP
         param.put("id",id);
         param.put("detail",new Gson().toJson(detail));
 
-        main.put("fragment",Tmyx02RouterConfig.MAIN02_FRAGMENT);
+        main.put("fragment",Tmyx02RouterConfig.TMYX02_TIDETAIL);
         main.put("params",new Gson().toJson(param));
 
 

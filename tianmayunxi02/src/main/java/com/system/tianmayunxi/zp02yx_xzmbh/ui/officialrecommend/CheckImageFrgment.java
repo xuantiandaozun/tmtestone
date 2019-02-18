@@ -147,7 +147,7 @@ public class CheckImageFrgment extends MVPBaseFragment <OfficContract.View, Offi
         param.put("id",beans.getId()+"");
         param.put("detail",new Gson().toJson(beans));
 
-        main.put("fragment",Tmyx02RouterConfig.MAIN02_FRAGMENT);
+        main.put("fragment",Tmyx02RouterConfig.TMYX02_TIDETAIL);
         main.put("params",new Gson().toJson(param));
 
 
