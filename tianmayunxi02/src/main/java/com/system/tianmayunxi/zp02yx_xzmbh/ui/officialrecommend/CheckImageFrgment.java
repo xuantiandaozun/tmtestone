@@ -233,7 +233,7 @@ public class CheckImageFrgment extends MVPBaseFragment <OfficContract.View, Offi
             linkShare.setTitle(articleDetail.getTitle());
             String domain = TMSharedPUtil.getTMBaseConfig(getContext()).getDomain();
 
-            linkShare.setUrl(TmyxConstant.shareUrl+beans.getId());
+            linkShare.setUrl(domain+TmyxConstant.shareUrl+beans.getId());
             TMShareUtil.getInstance(getContext()).shareLink(linkShare);
 
         }else if(view.getId()==R.id.tv_dy){
