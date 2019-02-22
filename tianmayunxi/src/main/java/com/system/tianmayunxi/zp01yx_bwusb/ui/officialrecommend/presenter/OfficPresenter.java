@@ -214,7 +214,7 @@ public class OfficPresenter extends MVPBasePresenter<OfficContract.View> impleme
                             HashMap<String, Object> eventData = bean.getEventData();
                             eventData.put("msgInfoList", null);
                             getView().callBack(bean);
-                            getView().showMessage(0, data.getMessage());
+                         //   getView().showMessage(0, data.getMessage());
                         }
                     }
             }
