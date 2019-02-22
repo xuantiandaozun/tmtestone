@@ -498,7 +498,6 @@ public class TiDetailFragment extends MVPBaseFragment<OfficContract.View, OfficP
                             if (is_sub) {
                                 tv_dy.setText("已订阅");
                             } else {
-                                tv_dy.setVisibility(View.VISIBLE);
                             }
                             break;
                         case "addSubscription":
