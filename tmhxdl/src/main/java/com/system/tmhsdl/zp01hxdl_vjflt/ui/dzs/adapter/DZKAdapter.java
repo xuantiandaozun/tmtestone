@@ -4,6 +4,7 @@ import android.graphics.Color;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 import com.bumptech.glide.Glide;
@@ -24,7 +25,7 @@ public class DZKAdapter  extends BaseQuickAdapter<InssBean.ListBean, BaseViewHol
     @Override
     protected void convert(BaseViewHolder helper, InssBean.ListBean item) {
         ImageView iv=helper.getView(R.id.iv);
-        RelativeLayout re_back=helper.getView(R.id.re_back);
+        LinearLayout re_back=helper.getView(R.id.re_back);
         Glide.with(mContext).load(item.getImage()).into(iv);
         if(!TextUtils.isEmpty(item.getTitle())){
             helper.setText(R.id.tv_name,item.getTitle());
