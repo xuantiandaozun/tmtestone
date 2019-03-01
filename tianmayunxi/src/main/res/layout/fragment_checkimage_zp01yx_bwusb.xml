@@ -75,10 +75,11 @@
     </LinearLayout>
     <com.tmall.ultraviewpager.UltraViewPager
         android:id="@+id/ultra_viewpager"
+        android:layout_below="@+id/titleBar"
+        android:layout_marginTop="@dimen/material_10"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/material_300"
-        android:layout_centerVertical="true"
-        android:layout_centerInParent="true" />
+        android:layout_height="440dp"
+     />
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_below="@+id/ultra_viewpager"
@@ -101,6 +102,20 @@
             android:textSize="@dimen/material_font_12"
             android:layout_height="wrap_content" />
     </RelativeLayout>
+    <TextView
+        android:id="@+id/iv_jf"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@mipmap/img_tip_jf"
+        android:layout_alignParentRight="true"
+        android:textColor="@color/white"
+        android:paddingTop="@dimen/dp_10"
+        android:layout_above="@+id/re_bottom"
+        android:layout_marginBottom="@dimen/material_50"
+        android:textSize="@dimen/material_font_13"
+        android:paddingLeft="@dimen/material_30"
+        android:text="领取积分"
+        />
     <LinearLayout
         android:id="@+id/re_bottom"
         android:layout_width="match_parent"

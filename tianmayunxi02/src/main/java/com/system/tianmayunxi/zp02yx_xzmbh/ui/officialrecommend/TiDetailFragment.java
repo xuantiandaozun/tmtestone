@@ -439,7 +439,16 @@ public class TiDetailFragment extends MVPBaseFragment<OfficContract.View, OfficP
 
                             String head_pic = articleDetail.getHead_pic();
 
-                            user_head.setImageURI(head_pic);
+                            if(!TextUtils.isEmpty(head_pic)){
+                                if(!head_pic.contains("http")){
+                                    String domain = TMSharedPUtil.getTMBaseConfig(getContext()).getDomain();
+
+                                    head_pic=domain+head_pic;
+                                }
+                                user_head.setImageURI(head_pic);
+                            }else {
+                                user_head.setBackgroundResource(R.mipmap.default_head);
+                            }
 
                             String title = articleDetail.getTitle();
                             if (!TextUtils.isEmpty(title)) {
@@ -493,6 +502,9 @@ public class TiDetailFragment extends MVPBaseFragment<OfficContract.View, OfficP
                             }
                             break;
                         case "artcleLike":
+                            if(object instanceof String){
+                                ToastUtil.showSnack(getThisContext(),(String) object);
+                            }
                             getDetail();
                             break;
                         case "msgLike":
@@ -513,6 +525,9 @@ public class TiDetailFragment extends MVPBaseFragment<OfficContract.View, OfficP
                             break;
                         case "addSubscription":
                         case "unSubscribe":
+                            if(object instanceof String){
+                                ToastUtil.showSnack(getThisContext(),(String) object);
+                            }
                             isSub(tid);
                             break;
                         case "checkIsStar":
