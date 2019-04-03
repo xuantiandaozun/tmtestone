@@ -1,7 +1,5 @@
 apply plugin: 'com.android.library'
 apply plugin: 'com.jakewharton.butterknife'
-apply plugin: 'maven'
-group = 'com.github.xuantiandaozun'
 buildscript {
     repositories {
         mavenCentral()
