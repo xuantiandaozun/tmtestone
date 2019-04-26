@@ -30,7 +30,7 @@ import com.system.tianmayunxi.zp02yx_xzmbh.ui.alltheme.bean.IvBean;
 import com.system.tianmayunxi.zp02yx_xzmbh.ui.alltheme.contract.AllThemeContract;
 import com.system.tianmayunxi.zp02yx_xzmbh.ui.alltheme.presenter.AllThemePresenter;
 import com.system.tianmayunxi.zp02yx_xzmbh.ui.officialrecommend.bean.CommonSeeBean;
-import com.system.uilibrary.dialog.DialogsTools;
+import com.system.tianmayunxi.zp02yx_xzmbh.utils.DialogsTools;
 import com.system.uilibrary.views.attachment.bean.AttachmentEntity;
 import com.system.uilibrary.views.titlebar.TitleBarView;
 import com.tenma.ventures.bean.utils.TMSharedPUtil;
