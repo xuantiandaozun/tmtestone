@@ -1,4 +1,4 @@
-package com.system.tianmayunxi.zp02yx_xzmbh.utils;
+package com.system.tianmayunxi.zp01yx_bwusb.utils;
 
 //
 // Source code recreated from a .class file by IntelliJ IDEA
@@ -15,18 +15,18 @@ import android.support.v7.app.AlertDialog.Builder;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.view.View.OnClickListener;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.LinearLayout.LayoutParams;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-
+import android.widget.LinearLayout.LayoutParams;
 import com.system.myproject.interfaces.OnItemClickListener;
-import com.system.tianmayunxi.zp02yx_xzmbh.R;
+import com.system.tianmayunxi.zp01yx_bwusb.R;
 import com.system.uilibrary.R.id;
 import com.system.uilibrary.R.layout;
 import com.system.uilibrary.R.style;
@@ -35,19 +35,19 @@ import com.system.uilibrary.interfaces.PhotoListener;
 import com.system.uilibrary.views.alertview.AlertView;
 import com.system.uilibrary.views.alertview.AlertView.Style;
 
-public class DialogsTools {
+public class DialogsToolss {
     private Context context;
     private Dialog dialog;
-    private static com.system.uilibrary.dialog.DialogsTools dialogUtils;
+    private static DialogsToolss dialogUtils;
     private InputMethodManager imm;
     private int position;
 
-    public DialogsTools() {
+    public DialogsToolss() {
     }
 
-    public static com.system.uilibrary.dialog.DialogsTools getInstance() {
+    public static DialogsToolss getInstance() {
         if (dialogUtils == null) {
-            dialogUtils = new com.system.uilibrary.dialog.DialogsTools();
+            dialogUtils = new DialogsToolss();
         }
 
         return dialogUtils;
@@ -60,7 +60,7 @@ public class DialogsTools {
 
     public void createLoadingDialog(String msg) {
         LayoutInflater inflater = LayoutInflater.from(this.context);
-        View v = inflater.inflate(R.layout.dialog_loading_zpo2yx, (ViewGroup)null);
+        View v = inflater.inflate(R.layout.dialog_loading_zpo1yx, (ViewGroup)null);
         LinearLayout layout = (LinearLayout)v.findViewById(id.dialog_loading_view);
         TextView tipTextView = (TextView)v.findViewById(id.tipTextView);
         tipTextView.setText(msg);
@@ -117,16 +117,16 @@ public class DialogsTools {
         this.dialog = loadingDialog;
     }
 
-    public Builder getMessageDialog(String title, String message, DialogInterface.OnClickListener onClickListener) {
+    public Builder getMessageDialog(String title, String message, android.content.DialogInterface.OnClickListener onClickListener) {
         Builder builder = new Builder(this.context);
         builder.setTitle(title);
         builder.setMessage(message);
         builder.setPositiveButton("确定", onClickListener);
-        builder.setNegativeButton("取消", (DialogInterface.OnClickListener)null);
+        builder.setNegativeButton("取消", (android.content.DialogInterface.OnClickListener)null);
         return builder;
     }
 
-    public Builder createAndroidMessage(String title, String message, String btn, DialogInterface.OnClickListener onClickListener, int color) {
+    public Builder createAndroidMessage(String title, String message, String btn, android.content.DialogInterface.OnClickListener onClickListener, int color) {
         Builder builder = new Builder(this.context);
         builder.setTitle(title);
         builder.setMessage(message);
@@ -143,11 +143,11 @@ public class DialogsTools {
     public void EditDialog(String title, final OnStringCallBack callBack) {
         View view = LayoutInflater.from(this.context).inflate(layout.half_dialog_view, (ViewGroup)null);
         final EditText editText = (EditText)view.findViewById(id.dialog_edit);
-        AlertDialog dialog = (new Builder(this.context)).setTitle(title).setView(view).setNegativeButton("取消", new DialogInterface.OnClickListener() {
+        AlertDialog dialog = (new Builder(this.context)).setTitle(title).setView(view).setNegativeButton("取消", new android.content.DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();
             }
-        }).setPositiveButton("确定", new DialogInterface.OnClickListener() {
+        }).setPositiveButton("确定", new android.content.DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
                 String content = editText.getText().toString();
                 callBack.onStringCallBack(content);
@@ -161,11 +161,11 @@ public class DialogsTools {
         View view = LayoutInflater.from(this.context).inflate(layout.dialog_twoedit, (ViewGroup)null);
         final EditText word = (EditText)view.findViewById(id.ed_word);
         final EditText password = (EditText)view.findViewById(id.ed_password);
-        AlertDialog dialog = (new Builder(this.context)).setTitle(title).setView(view).setNegativeButton("取消", new DialogInterface.OnClickListener() {
+        AlertDialog dialog = (new Builder(this.context)).setTitle(title).setView(view).setNegativeButton("取消", new android.content.DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();
             }
-        }).setPositiveButton("确定", new DialogInterface.OnClickListener() {
+        }).setPositiveButton("确定", new android.content.DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
                 String content = word.getText().toString();
                 String passwords = password.getText().toString();

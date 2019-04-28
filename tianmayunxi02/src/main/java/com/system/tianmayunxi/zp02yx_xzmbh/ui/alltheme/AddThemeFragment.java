@@ -30,7 +30,7 @@ import com.system.tianmayunxi.zp02yx_xzmbh.ui.alltheme.bean.IvBean;
 import com.system.tianmayunxi.zp02yx_xzmbh.ui.alltheme.contract.AllThemeContract;
 import com.system.tianmayunxi.zp02yx_xzmbh.ui.alltheme.presenter.AllThemePresenter;
 import com.system.tianmayunxi.zp02yx_xzmbh.ui.officialrecommend.bean.CommonSeeBean;
-import com.system.tianmayunxi.zp02yx_xzmbh.utils.DialogsTools;
+import com.system.tianmayunxi.zp02yx_xzmbh.utils.DialogsToolss;
 import com.system.uilibrary.views.attachment.bean.AttachmentEntity;
 import com.system.uilibrary.views.titlebar.TitleBarView;
 import com.tenma.ventures.bean.utils.TMSharedPUtil;
@@ -124,8 +124,8 @@ public class AddThemeFragment extends MVPBaseFragment<AllThemeContract.View, All
                             ToastUtil.showSnack(getContext(), "请选择图片");
                             return;
                         }
-                        DialogsTools.getInstance().initContext(getActivity());
-                        DialogsTools.getInstance().createLoadingDialog("加载中。。。");
+                        DialogsToolss.getInstance().initContext(getActivity());
+                        DialogsToolss.getInstance().createLoadingDialog("加载中。。。");
                         setTiny(data);
 
                         //  pushArticle();
