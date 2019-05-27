@@ -1,5 +1,7 @@
 package com.system.tianmayunxi.zp01yx_bwusb.ui.officialrecommend;
 
+import android.app.Activity;
+import android.content.Context;
 import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
@@ -8,6 +10,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -196,6 +199,16 @@ public class PlAllFragment extends MVPBaseFragment<OfficContract.View, OfficPres
         RequestBody body = RequestBody.create(okhttp3.MediaType.parse("application/json; charset=utf-8"), value);
         mPresenter.reportMsg(body);
     }
+    /**
+     * 隐藏软键盘(可用于Activity，Fragment)
+     */
+    public static void hideSoftKeyboard(Context context,View view) {
+
+        InputMethodManager inputMethodManager = (InputMethodManager) context.getSystemService(Activity.INPUT_METHOD_SERVICE);
+        inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+
+
+    }
     @OnClick({R2.id.btn_pl,R2.id.tv_up,R2.id.ly,R2.id.btn_next,R2.id.btn_copy})
     public void onClick(View view) {
         if(view.getId()==R.id.btn_pl){
@@ -205,6 +218,8 @@ public class PlAllFragment extends MVPBaseFragment<OfficContract.View, OfficPres
                 return;
             }
             PushMessage();
+            hideSoftInput();
+
         }else if(view.getId()==R.id.tv_up){
             msgLike(beans);
         }else if(view.getId()==R.id.ly){

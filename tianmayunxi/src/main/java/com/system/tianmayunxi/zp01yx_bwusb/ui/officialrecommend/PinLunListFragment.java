@@ -191,6 +191,8 @@ public class PinLunListFragment extends MVPBaseFragment<OfficContract.View, Offi
            return;
         }
         PushMessage();
+        hideSoftInput();
+
     }
 
     private void PushMessage() {

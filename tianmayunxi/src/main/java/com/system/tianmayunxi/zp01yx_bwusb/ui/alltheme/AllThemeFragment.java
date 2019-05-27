@@ -180,6 +180,7 @@ public class AllThemeFragment extends BaseFragment<AllThemeContract.View, AllThe
                             break;
                         case "addSubscription":
                         case "unSubscribe":
+                            ToastUtil.showSnack(getContext(), (String) object);
                             initList();
                             break;
                         default:

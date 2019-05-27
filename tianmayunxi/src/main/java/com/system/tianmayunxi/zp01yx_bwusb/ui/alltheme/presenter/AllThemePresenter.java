@@ -81,7 +81,7 @@ public class AllThemePresenter extends MVPBasePresenter<AllThemeContract.View> i
                             EventCallBackBean bean = new EventCallBackBean();
                             bean.setEventNumber(EventCallBackBean.WHITEDATA);
                             HashMap<String, Object> eventData = bean.getEventData();
-                            eventData.put("addSubscription", data.getData());
+                            eventData.put("addSubscription", data.getMessage());
                             getView().callBack(bean);
                         } else {
                             getView().showMessage(0, data.getMessage());
@@ -118,7 +118,7 @@ public class AllThemePresenter extends MVPBasePresenter<AllThemeContract.View> i
                             EventCallBackBean bean = new EventCallBackBean();
                             bean.setEventNumber(EventCallBackBean.WHITEDATA);
                             HashMap<String, Object> eventData = bean.getEventData();
-                            eventData.put("pushArticle", data.getData());
+                            eventData.put("pushArticle", data.getMessage());
                             getView().callBack(bean);
                         } else {
                             getView().showMessage(0, data.getMessage());
@@ -155,7 +155,7 @@ public class AllThemePresenter extends MVPBasePresenter<AllThemeContract.View> i
                             EventCallBackBean bean = new EventCallBackBean();
                             bean.setEventNumber(EventCallBackBean.WHITEDATA);
                             HashMap<String, Object> eventData = bean.getEventData();
-                            eventData.put("unSubscribe", data.getData());
+                            eventData.put("unSubscribe", data.getMessage());
                             getView().callBack(bean);
                         } else {
                             getView().showMessage(0, data.getMessage());

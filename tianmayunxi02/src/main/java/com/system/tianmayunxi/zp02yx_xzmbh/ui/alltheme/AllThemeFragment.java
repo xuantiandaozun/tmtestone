@@ -13,6 +13,7 @@ import com.google.gson.Gson;
 import com.library.flowlayout.SpaceItemDecoration;
 import com.system.myproject.base.BaseFragment;
 import com.system.myproject.utils.GsonUtil;
+import com.system.myproject.utils.ToastUtil;
 import com.system.myproject.utils.UEMethod;
 import com.system.tianmayunxi.zp02yx_xzmbh.R;
 import com.system.tianmayunxi.zp02yx_xzmbh.R2;
@@ -57,14 +58,14 @@ public class AllThemeFragment extends BaseFragment<AllThemeContract.View, AllThe
 
     @Override
     protected void initDatas() {
-        mlist.setLayoutManager(new GridLayoutManager(getThisContext(),3));
-        mlist.addItemDecoration(new SpaceItemDecoration(UEMethod.dp2px(getThisContext(),5)));
+        mlist.setLayoutManager(new GridLayoutManager(getThisContext(), 3));
+        mlist.addItemDecoration(new SpaceItemDecoration(UEMethod.dp2px(getThisContext(), 5)));
         adapter = new ThemeAdapter(new ArrayList<>());
         adapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
                 String tmToken = TMSharedPUtil.getTMToken(getContext());
-                if(TextUtils.isEmpty(tmToken)){
+                if (TextUtils.isEmpty(tmToken)) {
                     Intent intent = new Intent(getActivity().getPackageName() + ".usercenter.login");
                     getActivity().startActivity(intent);
                     return;
@@ -74,15 +75,14 @@ public class AllThemeFragment extends BaseFragment<AllThemeContract.View, AllThe
                 HashMap<String, String> main = new HashMap<>();
 
 
-
                 HashMap<String, String> param = new HashMap<>();
-                param.put("detail",GsonUtil.GsonString(item));
+                param.put("detail", GsonUtil.GsonString(item));
 
                 main.put("fragment", Tmyx02RouterConfig.TMYX02_THEMEDETAIL);
-                main.put("params",new Gson().toJson(param));
+                main.put("params", new Gson().toJson(param));
 
                 ARouter.getInstance().build(Tmyx02RouterConfig.MAIN02_FRAGMENT)
-                        .withString("params",GsonUtil.GsonString(main))
+                        .withString("params", GsonUtil.GsonString(main))
                         .withTransition(R.anim.slide_in_bottom, R.anim.slide_out_bottom)
                         .navigation();
 
@@ -93,20 +93,20 @@ public class AllThemeFragment extends BaseFragment<AllThemeContract.View, AllThe
             @Override
             public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
                 String tmToken = TMSharedPUtil.getTMToken(getContext());
-                if(TextUtils.isEmpty(tmToken)){
+                if (TextUtils.isEmpty(tmToken)) {
                     Intent intent = new Intent(getActivity().getPackageName() + ".usercenter.login");
                     getActivity().startActivity(intent);
                     return;
                 }
 
                 AllThemBean.ListBean item = (AllThemBean.ListBean) adapter.getItem(position);
-                if(view.getId()==R.id.tv_statue){
-                    if (!item.isIs_sub()){
+                if (view.getId() == R.id.tv_statue) {
+                    if (!item.isIs_sub()) {
                         addSubscription(item.getId());
-                    }else {
+                    } else {
                         unSubscription(item.getId());
                     }
-              }
+                }
             }
         });
         mlist.setAdapter(adapter);
@@ -116,16 +116,15 @@ public class AllThemeFragment extends BaseFragment<AllThemeContract.View, AllThe
     @Override
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
-        if(isVisibleToUser){
+        if (isVisibleToUser) {
             initList();
         }
     }
 
 
-
     private void unSubscription(int id) {
         HashMap<String, String> parms = new HashMap<>();
-        parms.put("tid",id+"");
+        parms.put("tid", id + "");
         String value = new Gson().toJson(parms);
         RequestBody body = RequestBody.create(okhttp3.MediaType.parse("application/json; charset=utf-8"), value);
         mPresenter.unSubscribe(body);
@@ -133,7 +132,7 @@ public class AllThemeFragment extends BaseFragment<AllThemeContract.View, AllThe
 
     private void addSubscription(int id) {
         HashMap<String, String> parms = new HashMap<>();
-        parms.put("tid",id+"");
+        parms.put("tid", id + "");
         String value = new Gson().toJson(parms);
         RequestBody body = RequestBody.create(okhttp3.MediaType.parse("application/json; charset=utf-8"), value);
         mPresenter.addSubscription(body);
@@ -180,6 +179,7 @@ public class AllThemeFragment extends BaseFragment<AllThemeContract.View, AllThe
                             break;
                         case "addSubscription":
                         case "unSubscribe":
+                            ToastUtil.showSnack(getContext(), (String) object);
                             initList();
                             break;
                         default:

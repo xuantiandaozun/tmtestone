@@ -126,7 +126,7 @@ public class AddThemeFragment extends MVPBaseFragment<AllThemeContract.View, All
                             return;
                         }
                         DialogsToolss.getInstance().initContext(getActivity());
-                        DialogsToolss.getInstance().createLoadingDialog("加载中。。。");
+                        DialogsToolss.getInstance().createLoadingDialog("加载中");
                         setTiny(data);
 
                         //  pushArticle();
@@ -329,6 +329,7 @@ public class AddThemeFragment extends MVPBaseFragment<AllThemeContract.View, All
                             pushArticle(string);
                             break;
                         case "pushArticle":
+                            ToastUtil.showSnack(getContext(),(String)object);
                             getActivity().finish();
                             break;
                         default:

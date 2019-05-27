@@ -328,6 +328,8 @@ public class AddThemeFragment extends MVPBaseFragment<AllThemeContract.View, All
                             pushArticle(string);
                             break;
                         case "pushArticle":
+                            ToastUtil.showSnack(getContext(),(String)object);
+
                             getActivity().finish();
                             break;
                         default:

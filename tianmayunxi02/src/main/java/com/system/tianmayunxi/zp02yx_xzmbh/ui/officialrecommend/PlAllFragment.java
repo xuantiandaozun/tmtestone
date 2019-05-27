@@ -1,5 +1,6 @@
 package com.system.tianmayunxi.zp02yx_xzmbh.ui.officialrecommend;
 
+import android.content.Context;
 import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
@@ -8,6 +9,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -204,6 +206,7 @@ public class PlAllFragment extends MVPBaseFragment<OfficContract.View, OfficPres
                 return;
             }
             PushMessage();
+            hideSoftInput();
         }else if(view.getId()==R.id.tv_up){
             msgLike(beans);
         }else if(view.getId()==R.id.ly){
